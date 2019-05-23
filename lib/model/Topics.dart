@@ -1,4 +1,3 @@
-
 class Topics {
   String url;
   String displayName;

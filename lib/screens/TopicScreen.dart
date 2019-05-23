@@ -10,14 +10,12 @@ class TopicScreen extends StatefulWidget {
 
 class TopicScreenState extends State<TopicScreen> {
   List<Topics> topics = new List<Topics>();
+
   _renderBody() {
-    Topics t1;
-    t1 = new Topics('https://www.tarafdari.com/taxonomy/term/19013',
-        'BasketBall', 'Play with hands!', '');
-    topics.add(t1);
-    t1 = new Topics('https://www.tarafdari.com/taxonomy/term/22960',
-        'VolleyBall', 'Play with hands!', '');
-    topics.add(t1);
+    topics.add(new Topics('https://www.tarafdari.com/taxonomy/term/19013',
+        'BasketBall', 'Play with hands!', ''));
+    topics.add(new Topics('https://www.tarafdari.com/taxonomy/term/22960',
+        'VolleyBall', 'Play with hands!', ''));
     return TopicsList(topics: topics);
   }
 
@@ -40,7 +38,6 @@ class TopicsList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return ListView.builder(
         itemCount: topics.length,
         itemBuilder: (context, index) {
