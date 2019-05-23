@@ -32,18 +32,11 @@ class HomeScreenState extends State<HomeScreen> {
             },
             items: [
               BottomNavigationBarItem(
-                  icon: Icon(Icons.home),
-                  title: Text("Home")
-              ),
+                  icon: Icon(Icons.home), title: Text("Home")),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.favorite),
-                  title: Text("Favorites")
-              ),
+                  icon: Icon(Icons.favorite), title: Text("Favorites")),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.settings),
-                  title: Text('Setting')
-              )
-            ])
-    );
+                  icon: Icon(Icons.settings), title: Text('Setting'))
+            ]));
   }
 }
