@@ -12,10 +12,12 @@ class TopicScreenState extends State<TopicScreen> {
   List<Topics> topics = new List<Topics>();
 
   _renderBody() {
-    topics.add(new Topics('https://www.tarafdari.com/taxonomy/term/19013',
-        'BasketBall', 'Play with hands!', ''));
-    topics.add(new Topics('https://www.tarafdari.com/taxonomy/term/22960',
-        'VolleyBall', 'Play with hands!', ''));
+    if (topics.isEmpty) {
+      topics.add(new Topics('https://www.tarafdari.com/taxonomy/term/19013',
+          'BasketBall', 'Play with hands!', ''));
+      topics.add(new Topics('https://www.tarafdari.com/taxonomy/term/22960',
+          'VolleyBall', 'Play with hands!', ''));
+    }
     return TopicsList(topics: topics);
   }
 

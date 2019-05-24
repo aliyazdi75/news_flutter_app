@@ -14,32 +14,35 @@ class PostScreen extends StatefulWidget {
 class PostScreenState extends State<PostScreen> {
   final String topic;
   List<Posts> posts = new List<Posts>();
+  var refreshKey = GlobalKey<RefreshIndicatorState>();
 
   PostScreenState(this.topic);
 
   _renderBody() {
-    if (topic == 'VolleyBall') {
-      posts.add(new Posts(
-          'فهرست 25 نفره ایران برای حضور در لیگ ملت‌ های والیبال مشخص شد',
-          '/node/1308003',
-          '25',
-          'https://www.tarafdari.com/sites/default/files/contents/user359161/news/1749689.jpg'));
-      posts.add(new Posts(
-          'تیم ملی والیبال بانوان؛ پرامیدترین تیم تاریخ با حضور لژیونرها',
-          '/node/1307047',
-          '40',
-          'https://www.tarafdari.com/sites/default/files/contents/user561808/news/tym-mly-wlybl-bnwn.jpg'));
-    } else {
-      posts.add(new Posts(
-          'از مسی و رونالدو تا جیمز و فدرر؛ فوق ستارگانی که دوست نداریم، دوران آن ها تمام شود',
-          '/node/1308756',
-          '30',
-          'https://www.tarafdari.com/sites/default/files/contents/user389018/news/messi-ronaldo-stars.jpg'));
-      posts.add(new Posts(
-          'با اعلام کمیته انضباطی فدراسیون بسکتبال، باشگاه شهرداری تبریز از فعالیت در بسکتبال محروم شد',
-          '/node/1308081',
-          '35',
-          'https://www.tarafdari.com/sites/default/files/contents/user359161/news/1396112316110058513324294.jpg'));
+    if (posts.isEmpty) {
+      if (topic == 'VolleyBall') {
+        posts.add(new Posts(
+            'فهرست 25 نفره ایران برای حضور در لیگ ملت‌ های والیبال مشخص شد',
+            '/node/1308003',
+            '25',
+            'https://www.tarafdari.com/sites/default/files/contents/user359161/news/1749689.jpg'));
+        posts.add(new Posts(
+            'تیم ملی والیبال بانوان؛ پرامیدترین تیم تاریخ با حضور لژیونرها',
+            '/node/1307047',
+            '40',
+            'https://www.tarafdari.com/sites/default/files/contents/user561808/news/tym-mly-wlybl-bnwn.jpg'));
+      } else {
+        posts.add(new Posts(
+            'از مسی و رونالدو تا جیمز و فدرر؛ فوق ستارگانی که دوست نداریم، دوران آن ها تمام شود',
+            '/node/1308756',
+            '30',
+            'https://www.tarafdari.com/sites/default/files/contents/user389018/news/messi-ronaldo-stars.jpg'));
+        posts.add(new Posts(
+            'با اعلام کمیته انضباطی فدراسیون بسکتبال، باشگاه شهرداری تبریز از فعالیت در بسکتبال محروم شد',
+            '/node/1308081',
+            '35',
+            'https://www.tarafdari.com/sites/default/files/contents/user359161/news/1396112316110058513324294.jpg'));
+      }
     }
     return PostsList(posts: posts);
   }
@@ -47,10 +50,33 @@ class PostScreenState extends State<PostScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('Posts from $topic'),
-        ),
-        body: _renderBody());
+      appBar: AppBar(
+        title: Text('Posts from $topic'),
+      ),
+      body: RefreshIndicator(
+        key: refreshKey,
+        child: _renderBody(),
+        onRefresh: refreshList,
+      ),
+    );
+  }
+
+  Future<Null> refreshList() async {
+    if (topic == 'VolleyBall') {
+      posts.add(new Posts(
+          'فهرست 25 نفره ایران برای حضور در لیگ ملت‌ های والیبال مشخص شد',
+          '/node/1308003',
+          '25',
+          'https://www.tarafdari.com/sites/default/files/contents/user359161/news/1749689.jpg'));
+    } else {
+      posts.add(new Posts(
+          'از مسی و رونالدو تا جیمز و فدرر؛ فوق ستارگانی که دوست نداریم، دوران آن ها تمام شود',
+          '/node/1308756',
+          '30',
+          'https://www.tarafdari.com/sites/default/files/contents/user389018/news/messi-ronaldo-stars.jpg'));
+    }
+
+    return null;
   }
 }
 
